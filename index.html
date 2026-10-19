@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17251f">
+  <title>Swiss Chess Tournament</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Swiss Chess home">
+      <span class="brand-mark" aria-hidden="true">♞</span>
+      <span>Swiss<span class="brand-light">board</span></span>
+    </a>
+    <span class="header-note">A little tournament, well played.</span>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">YOUR CLUB, YOUR RULES</p>
+      <h1>Let’s play<br><span>some chess.</span></h1>
+      <p class="intro-copy">Add your players, set the rounds, and let the Swiss system take it from there.</p>
+    </section>
+
+    <section class="setup-grid" aria-label="Tournament setup">
+      <article class="panel players-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">01 / THE LINEUP</p>
+            <h2>Players <span id="player-count" class="count-badge">0</span></h2>
+          </div>
+        </div>
+        <form id="player-form" class="player-form">
+          <label class="field">
+            <span>Player name</span>
+            <input id="player-name" name="name" type="text" maxlength="60" placeholder="e.g. Alex Morgan" required>
+          </label>
+          <label class="field rating-field">
+            <span>Rating (optional)</span>
+            <input id="player-rating" name="rating" type="number" min="0" max="4000" step="1" placeholder="Unrated">
+          </label>
+          <button class="button button-dark add-button" type="submit" aria-label="Add player">+</button>
+        </form>
+        <p id="players-hint" class="helper-text">Add at least two players to get started.</p>
+        <div class="table-wrap">
+          <table class="players-table">
+            <thead>
+              <tr><th scope="col">PLAYER</th><th scope="col">RATING</th><th scope="col"><span class="sr-only">Actions</span></th></tr>
+            </thead>
+            <tbody id="players-list"></tbody>
+          </table>
+        </div>
+        <button id="clear-players" class="text-button" type="button">Clear all players</button>
+      </article>
+
+      <aside class="panel settings-panel">
+        <p class="eyebrow">02 / TOURNAMENT SETTINGS</p>
+        <h2>Set the pace.</h2>
+        <label class="field rounds-field">
+          <span>Number of rounds</span>
+          <input id="round-count" type="number" min="1" max="20" value="5">
+        </label>
+        <div class="format-note">
+          <span class="note-icon" aria-hidden="true">i</span>
+          <p>Players are paired by score each round. Wins earn 1 point, draws ½, and losses 0. A player won’t face the same opponent twice.</p>
+        </div>
+        <button id="start-button" class="button button-accent start-button" type="button">Start tournament <span aria-hidden="true">→</span></button>
+        <p id="setup-message" class="status-message" aria-live="polite"></p>
+      </aside>
+    </section>
+
+    <section id="tournament-section" class="tournament-section" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / THE TOURNAMENT</p>
+          <h2 id="tournament-title">Round 1</h2>
+        </div>
+        <div class="round-progress">
+          <span id="round-progress-label">Round 1 of 5</span>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+        </div>
+      </div>
+      <div class="tournament-grid">
+        <article class="panel pairings-panel">
+          <div class="pairings-heading">
+            <div>
+              <p class="eyebrow">ROUND PAIRINGS</p>
+              <h3 id="pairings-subtitle">Enter each result to continue.</h3>
+            </div>
+            <span id="round-status" class="round-status">IN PROGRESS</span>
+          </div>
+          <div id="pairings-list" class="pairings-list"></div>
+          <div class="round-actions">
+            <p id="round-message" class="status-message" aria-live="polite"></p>
+            <button id="next-round-button" class="button button-dark" type="button" disabled>Complete round <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <aside class="panel standings-panel">
+          <p class="eyebrow">LEADERBOARD</p>
+          <h3>Standings</h3>
+          <div id="standings-list" class="standings-list"></div>
+        </aside>
+      </div>
+      <button id="reset-tournament" class="text-button reset-button" type="button">Reset tournament</button>
+    </section>
+    <footer class="page-footer">GOOD GAMES. GOOD COMPANY. <span>♞</span></footer>
+  </main>
+</body>
+</html>
